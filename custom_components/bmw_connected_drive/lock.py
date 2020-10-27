@@ -79,8 +79,12 @@ class BMWLock(LockEntity):
             ATTR_ATTRIBUTION: ATTRIBUTION,
         }
         if self.door_lock_state_available:
-            result["door_lock_state"] = vehicle_state.door_lock_state.value
-            result["last_update_reason"] = vehicle_state.last_update_reason
+            result[
+                "door_lock_state"
+            ] = vehicle_state.vehicle_status.door_lock_state.value
+            result[
+                "last_update_reason"
+            ] = vehicle_state.vehicle_status.last_update_reason
         return result
 
     @property
@@ -114,7 +118,8 @@ class BMWLock(LockEntity):
         # Possible values: LOCKED, SECURED, SELECTIVE_LOCKED, UNLOCKED
         self._state = (
             STATE_LOCKED
-            if vehicle_state.door_lock_state in [LockState.LOCKED, LockState.SECURED]
+            if vehicle_state.vehicle_status.door_lock_state
+            in [LockState.LOCKED, LockState.SECURED]
             else STATE_UNLOCKED
         )
 

@@ -115,11 +115,14 @@ class BMWConnectedDriveSensor(Entity):
     def icon(self):
         """Icon to use in the frontend, if any."""
         vehicle_state = self._vehicle.state
-        charging_state = vehicle_state.charging_status in [ChargingState.CHARGING]
+        charging_state = vehicle_state.vehicle_status.charging_status in [
+            ChargingState.CHARGING
+        ]
 
         if self._attribute == "charging_level_hv":
             return icon_for_battery_level(
-                battery_level=vehicle_state.charging_level_hv, charging=charging_state
+                battery_level=vehicle_state.vehicle_status.charging_level_hv,
+                charging=charging_state,
             )
         icon, _ = self._attribute_info.get(self._attribute, [None, None])
         return icon

@@ -15,7 +15,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     devices = []
 
     for vehicle in account.account.vehicles:
-        if vehicle.state.is_vehicle_tracking_enabled:
+        if vehicle.state.vehicle_status.is_vehicle_tracking_enabled:
             devices.append(BMWDeviceTracker(account, vehicle))
         else:
             _LOGGER.info(
@@ -33,7 +33,9 @@ class BMWDeviceTracker(TrackerEntity):
         self._vehicle = vehicle
         self._unique_id = vehicle.vin
         self._location = (
-            vehicle.state.gps_position if vehicle.state.gps_position else (None, None)
+            vehicle.state.vehicle_status.gps_position
+            if vehicle.state.vehicle_status.gps_position
+            else (None, None)
         )
         self._name = vehicle.name
 
@@ -86,8 +88,8 @@ class BMWDeviceTracker(TrackerEntity):
     def update(self):
         """Update state of the decvice tracker."""
         self._location = (
-            self._vehicle.state.gps_position
-            if self._vehicle.state.is_vehicle_tracking_enabled
+            self._vehicle.state.vehicle_status.gps_position
+            if self._vehicle.state.vehicle_status.is_vehicle_tracking_enabled
             else (None, None)
         )
 

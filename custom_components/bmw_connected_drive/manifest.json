@@ -1,7 +1,7 @@
 {
   "domain": "bmw_connected_drive",
   "name": "BMW Connected Drive",
-  "documentation": "https://www.home-assistant.io/integrations/bmw_connected_drive",
+  "documentation": "https://github.com/nichwang88/ha_custom_component",
   "requirements": ["bimmer_connected==0.7.16"],
   "codeowners": ["@gerard33", "@rikroe"],
   "config_flow": true,

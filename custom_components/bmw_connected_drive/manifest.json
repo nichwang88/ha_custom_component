@@ -2,8 +2,8 @@
   "domain": "bmw_connected_drive",
   "name": "BMW Connected Drive",
   "documentation": "https://github.com/nichwang88/ha_custom_component",
-  "requirements": ["bimmer_connected==0.7.20"],
-  "version": "0.7.20",
+  "requirements": ["bimmer_connected==0.7.21"],
+  "version": "0.7.21",
   "codeowners": ["@gerard33", "@rikroe"],
   "config_flow": true,
   "iot_class": "cloud_polling"

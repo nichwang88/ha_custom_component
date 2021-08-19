@@ -13,3 +13,4 @@ See [Github Releases](https://github.com/bimmerconnected/ha_custom_component/rel
 
 # Version
 Version `0.7.16`
+
